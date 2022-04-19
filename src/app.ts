@@ -127,6 +127,7 @@ yargs.command({
     handler(argv) {
         if (typeof argv.user === 'string' && typeof argv.title === 'string') {
             note.showANote(argv.user, argv.title);
+            // fs.writeFileSync(`./database/${name}/${titleTogether}.json`, structure);
         }
     },
 });

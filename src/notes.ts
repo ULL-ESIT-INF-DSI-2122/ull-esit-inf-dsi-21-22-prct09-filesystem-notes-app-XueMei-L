@@ -1,3 +1,4 @@
+/* eslint-disable object-curly-spacing */
 /* eslint-disable no-multiple-empty-lines */
 /* eslint-disable no-unused-vars */
 /* eslint-disable padded-blocks */
@@ -42,7 +43,7 @@ export class Notes {
 
     addNote(username:string, title:string, body:string, color:string) {
         const newNote = { title: {title}, body: {body}, color: {color}};
-        if (fs.existsSync(`./database/${username}`) {
+        if (fs.existsSync(`./database/${username}`)) {
             
         }
     }
