@@ -1,11 +1,15 @@
+/* eslint-disable no-multiple-empty-lines */
 /* eslint-disable no-unused-vars */
 /* eslint-disable padded-blocks */
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable eol-last */
 /* eslint-disable indent */
-// import * as fs from 'fs';
-// import * as chalk from 'chalk';
+import * as fs from 'fs';
+import * as chalk from 'chalk';
 // import * as yargs from 'yargs';
+
+
+
 
 export enum colors {
     red = 'red',
@@ -18,19 +22,23 @@ export class Notes {
     
     constructor() {}
 
-    showAllNotes() {}
+    showAllNotes(userName:string) {
+
+    }
  
-    showANote() {}
+    showANote(username:string, noteTitle:string) {
 
-    addNote(title:string, body:string, color:string) {
+    }
+
+    addNote(username:string, title:string, body:string, color:string) {
         
     }
 
-    deleteNote(title:string) {
+    deleteNote(userName:string, title:string) {
         
     }
 
-    modifyNote(title:string) {
-        
+    modifyNote(username:string, title:string) {
+
     }
 }
