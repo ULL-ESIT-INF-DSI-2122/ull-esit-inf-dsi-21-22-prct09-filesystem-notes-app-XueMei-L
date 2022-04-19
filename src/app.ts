@@ -12,7 +12,7 @@ const chalk = require('chalk');
 /**
  * A object of class Notes
  */
-const note = new Notes();
+const note = Notes.getNotes();
 
 /**
  * yargs command to add a new note
@@ -148,6 +148,7 @@ yargs.command({
         if (typeof argv.user === 'string') {
             // note.showAllNotes(argv.user);
             console.log(chalk.blue('Show Note'));
+            console.log(chalk.green(note));
         }
     },
 });

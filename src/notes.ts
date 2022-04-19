@@ -20,7 +20,17 @@ export enum colors {
 
 export class Notes {
     
-    constructor() {}
+    private static notes:Notes;
+    
+    constructor() {
+
+    }
+
+    public static getNotes(): Notes {
+        if (!fs.existsSync(`./database`)) fs.mkdirSync(`./database`, {recursive: true});
+        if (!Notes.notes) Notes.notes = new Notes();
+        return Notes.notes;
+    }
 
     showAllNotes(userName:string) {
 
@@ -31,7 +41,10 @@ export class Notes {
     }
 
     addNote(username:string, title:string, body:string, color:string) {
-        
+        const newNote = { title: {title}, body: {body}, color: {color}};
+        if (fs.existsSync(`./database/${username}`) {
+            
+        }
     }
 
     deleteNote(userName:string, title:string) {
