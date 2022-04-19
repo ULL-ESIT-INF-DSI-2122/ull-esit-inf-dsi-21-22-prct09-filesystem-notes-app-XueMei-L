@@ -37,20 +37,21 @@ yargs.command({
             type: 'string',
         },
         color: {
-            describe: 'Note Color. The colors must be red, green, blue and yellow, yellow is the default color.',
+            describe: 'Note color. The colors must be red, green, blue and yellow, yellow is the default color.',
             demandOption: true,
             type: 'string',
         },
     },
     handler(argv) {
         if (typeof argv.user === 'string' && typeof(argv.title) === 'string' && typeof(argv.body) === 'string' && typeof(argv.color) === 'string') {
-            Object.values(colors).forEach((color) => {
-                if (color == argv.color) {
+            // Object.values(colors).forEach((color) => {
+            //     if (color == argv.color) {
 
-                } else {
+            //     } else {
 
-                }
-            });
+            //     }
+            // });
+            console.log(`add..`);
             note.addNote(argv.user, argv.title, argv.body, argv.color);
         }
     },
@@ -136,7 +137,7 @@ yargs.command({
  * Yargs to show all notes
  */
 yargs.command({
-    command: 'sa',
+    command: 'show',
     describe: 'Show all note',
     builder: {
         user: {
@@ -147,9 +148,9 @@ yargs.command({
     },
     handler(argv) {
         if (typeof argv.user === 'string') {
-            // note.showAllNotes(argv.user);
             console.log(chalk.blue('Show Note'));
-            console.log(chalk.green(note));
+            // console.log(chalk.green(note));
+            note.showAllNotes(argv.user);
         }
     },
 });

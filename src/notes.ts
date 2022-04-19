@@ -10,8 +10,6 @@ import * as chalk from 'chalk';
 // import * as yargs from 'yargs';
 
 
-
-
 export enum colors {
     red = 'red',
     green = 'green',
@@ -23,9 +21,7 @@ export class Notes {
     
     private static notes:Notes;
     
-    constructor() {
-
-    }
+    constructor() {}
 
     public static getNotes(): Notes {
         if (!fs.existsSync(`./database`)) fs.mkdirSync(`./database`, {recursive: true});
@@ -34,7 +30,15 @@ export class Notes {
     }
 
     showAllNotes(userName:string) {
-
+        console.log(`show all notes`);
+        if (fs.existsSync(`./database/${userName}/hello.json`)) {
+            console.log(`there is a database`);
+            fs.writeFileSync(`./database/${userName}/hello.json`, 'hello');
+        }else {
+            console.log(`i am here`);
+            fs.mkdirSync(`./database/${userName}`, {recursive: true});
+            fs.writeFileSync(`./database/${userName}/hello.json`, 'hola');
+        }
     }
  
     showANote(username:string, noteTitle:string) {
@@ -42,9 +46,12 @@ export class Notes {
     }
 
     addNote(username:string, title:string, body:string, color:string) {
-        const newNote = { title: {title}, body: {body}, color: {color}};
-        if (fs.existsSync(`./database/${username}`)) {
-            
+        // const structure = `{ "title": "${title}", "body": "${body}" , "color": "${colour}" }`;
+        console.log(`{ "title": "${title}", "body": "${body}", "color": "${color}}"`);
+        const newNote = `{"title": "${title}", "body": "${body}", "color": "${color}"}`;
+        if (fs.existsSync(`./database/${username}/${username}.json`)) {
+            console.log(`add++`);
+            fs.writeFileSync(`./database/${username}/${username}.json`, newNote);
         }
     }
 
