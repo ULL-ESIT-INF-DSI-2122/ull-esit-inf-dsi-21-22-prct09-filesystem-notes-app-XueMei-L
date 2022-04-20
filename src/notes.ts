@@ -45,25 +45,40 @@ export class Notes {
 
     }
 
-    addNote(username:string, title:string, body:string, color:string) {
+    addNote(username:string, title:string, body:string, color:string):string {
         const structure = `{ "title": "${title}", "body": "${body}" , "color": "${color}" }`;
         console.log(`{ "title": "${title}", "body": "${body}", "color": "${color}}"`);
         if (fs.existsSync(`./database/${username}`) == true) {
             if(fs.existsSync(`./database/${username}/${title}.json`) == false) {
                 fs.writeFileSync(`./database/${username}/${title}.json`, structure);
-                console.log(chalk.green(`Sucesfully to add a [${title}] notes.`));
+                console.log(chalk.green(`Sucesfully to add the new note with title: [${title}].`));
+                return `Sucesfully to add the new note with title: [${title}].`;
             } else {
-                console.log(chalk.red('Could not add the new note, there is a note has the same title'));
+                console.log(chalk.red('Could not add the new note, there is a note has the same title.'));
+                return 'Could not add the new note, there is a note has the same title.';
             }
         } else {
             fs.mkdirSync(`./database/${username}`);
             fs.writeFileSync(`./database/${username}/${title}.json`, structure);
-            console.log(chalk.green(`Sucesfully to add a [${title}] notes.`));
+            console.log(chalk.green(`New User ${username}, Sucesfully to add the new note with title: [${title}].`));
+            return `New User ${username}, Sucesfully to add the new note with title: [${title}].`;
         }
     }
 
-    deleteNote(userName:string, title:string) {
-        
+    removeNote(userName:string, title:string): string {
+        if(fs.existsSync(`./database/${userName}`) == true) {
+            if (fs.existsSync(`./database/${userName}/${title}.json`) == true) {
+                fs.rmSync(`./database/${userName}/${title}.json`);
+                console.log(chalk.green(`Sucesfully to remove the [${title}] notes.`));
+                return `Sucesfully to remove the [${title}] notes.`;
+            } else {
+                console.log(chalk.red(`Error, there is no one note called [${title}].`));
+                return `Error, there is no one note called [${title}].`;
+            }
+        } else {
+            console.log(chalk.red(`Error, User {${userName}} not found`));
+            return `Error, User {${userName}} not found`;
+        }
     }
 
     modifyNote(username:string, title:string) {

@@ -60,7 +60,7 @@ yargs.command({
  * yargs command to delete a note
  */
 yargs.command({
-    command: 'delete',
+    command: 'remove',
     describe: 'Detele a note',
     builder: {
         user: {
@@ -76,7 +76,7 @@ yargs.command({
     },
     handler(argv) {
         if (typeof(argv.user) === 'string' &&typeof argv.title === 'string') {
-            note.deleteNote(argv.user, argv.title);
+            note.removeNote(argv.user, argv.title);
         }
     },
 });
@@ -110,8 +110,8 @@ yargs.command({
  * yargs to show a specify note
  */
 yargs.command({
-    command: 'showone',
-    describe: 'show a note',
+    command: 'read',
+    describe: 'Read a note',
     builder: {
         user: {
             describe: 'User user',
