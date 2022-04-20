@@ -6,11 +6,11 @@
 /* eslint-disable eol-last */
 /* eslint-disable indent */
 import * as fs from 'fs';
-import * as chalk from 'chalk';
-// import * as yargs from 'yargs';
+
+const chalk = require('chalk');
 
 
-export enum colors {
+export enum colours {
     red = 'red',
     green = 'green',
     blue = 'blue',
@@ -46,12 +46,19 @@ export class Notes {
     }
 
     addNote(username:string, title:string, body:string, color:string) {
-        // const structure = `{ "title": "${title}", "body": "${body}" , "color": "${colour}" }`;
+        const structure = `{ "title": "${title}", "body": "${body}" , "color": "${color}" }`;
         console.log(`{ "title": "${title}", "body": "${body}", "color": "${color}}"`);
-        const newNote = `{"title": "${title}", "body": "${body}", "color": "${color}"}`;
-        if (fs.existsSync(`./database/${username}/${username}.json`)) {
-            console.log(`add++`);
-            fs.writeFileSync(`./database/${username}/${username}.json`, newNote);
+        if (fs.existsSync(`./database/${username}`) == true) {
+            if(fs.existsSync(`./database/${username}/${title}.json`) == false) {
+                fs.writeFileSync(`./database/${username}/${title}.json`, structure);
+                console.log(chalk.green(`Sucesfully to add a [${title}] notes.`));
+            } else {
+                console.log(chalk.red('Could not add the new note, there is a note has the same title'));
+            }
+        } else {
+            fs.mkdirSync(`./database/${username}`);
+            fs.writeFileSync(`./database/${username}/${title}.json`, structure);
+            console.log(chalk.green(`Sucesfully to add a [${title}] notes.`));
         }
     }
 

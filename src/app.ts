@@ -4,7 +4,7 @@
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable indent */
 
-import {colors, Notes} from './notes';
+import {Notes, colours} from './notes';
 import yargs from "yargs";
 
 const chalk = require('chalk');
@@ -43,15 +43,14 @@ yargs.command({
         },
     },
     handler(argv) {
-        if (typeof argv.user === 'string' && typeof(argv.title) === 'string' && typeof(argv.body) === 'string' && typeof(argv.color) === 'string') {
-            // Object.values(colors).forEach((color) => {
-            //     if (color == argv.color) {
-
-            //     } else {
-
-            //     }
-            // });
-            console.log(`add..`);
+        // Default colour
+        let colourNote: colours = colours.yellow;
+        if (typeof argv.user === 'string' && typeof argv.title === 'string' && typeof argv.body === 'string' && typeof argv.color === 'string') {
+            Object.values(colours).forEach((value) => {
+                if (argv.color == value) {
+                  colourNote = value;
+                }
+              });
             note.addNote(argv.user, argv.title, argv.body, argv.color);
         }
     },
