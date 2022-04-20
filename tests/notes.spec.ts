@@ -61,6 +61,17 @@ describe('Testing for the practice 09', () => {
     });
   });
 
+  //List function test
+  describe('list function test', () => {
+    it('notes.listNotes() returns - Segunda nota\n- Tercera nota\n', () => {
+      expect(notes.listNotes('Test')).to.be.equal('- Segunda nota\n- Tercera nota\n');
+    });
+
+    it('notes.listNotes() returns Error: User not found!', () => {
+      expect(notes.listNotes('Test2')).to.be.equal('Error: User not found!');
+    });
+  });
+
 });
 
 fs.rmdirSync('./database', {recursive: true});
