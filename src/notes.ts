@@ -86,7 +86,7 @@ export class Notes {
     removeNote(username:string, title:string): string {
         if(fs.existsSync(`./database/${username}`) == true) {
             if (fs.existsSync(`./database/${username}/${title}.json`) == true) {
-                fs.rmSync(`./database/${username}/${title}.json`);
+                fs.unlinkSync(`./database/${username}/${title}.json`);
                 console.log(chalk.green(`Sucesfully to remove the [${title}] notes.`));
                 return `Sucesfully to remove the [${title}] notes.`;
             } else {
