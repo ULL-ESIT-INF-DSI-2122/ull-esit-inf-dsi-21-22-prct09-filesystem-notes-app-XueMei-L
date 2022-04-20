@@ -79,6 +79,25 @@ describe('Testing for the practice 09', () => {
     });
   });
 
+  //Read a note
+  describe('readNote function test', () => {
+    it('notes.readNote() returns ', () => {
+      expect(notes.readNote('User1', 'Note01')).to.be.equal(
+          `- Title: Note01: Body: Test01`
+        );
+    });
+
+    it('notes.readNote() returns There is no note with the title [n1]', () => {
+      expect(notes.readNote('User1', 'n1')).to.be.equal(
+          `There is no note with the title [n1]`
+        );
+    });
+
+    it('notes.readNote() returns Error, User [u1] not found!', () => {
+      expect(notes.readNote('u1', 'Note01')).to.be.equal('Error, User [u1] not found!');
+    });
+  });
+  
 });
 
 fs.rmdirSync('./database', {recursive: true});

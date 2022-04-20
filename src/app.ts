@@ -127,8 +127,7 @@ yargs.command({
     },
     handler(argv) {
         if (typeof argv.user === 'string' && typeof argv.title === 'string') {
-            note.showANote(argv.user, argv.title);
-            // fs.writeFileSync(`./database/${name}/${titleTogether}.json`, structure);
+            note.readNote(argv.user, argv.title);
         }
     },
 });
@@ -137,7 +136,7 @@ yargs.command({
  * Yargs to show all notes
  */
 yargs.command({
-    command: 'show',
+    command: 'list',
     describe: 'Show all note',
     builder: {
         user: {

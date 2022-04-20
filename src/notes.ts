@@ -31,7 +31,7 @@ export class Notes {
 
     listNotes(username:string):string {
         if(fs.existsSync(`./database/${username}`) == true) {
-            const fileDatabase = fs.readdirSync(`./database/${username}`);
+            const fileDatabase = fs.readdirSync(`./database/${username}/`);
             let aux:string = '';
             fileDatabase.forEach((Note) => {
                 const noteData = fs.readFileSync(`./database/${username}/${Note}`);
@@ -45,11 +45,23 @@ export class Notes {
             console.log(`Error, User {${username}} not found!`);
             return `Error, User {${username}} not found!`
         }
-
     }
  
-    showANote(username:string, noteTitle:string) {
-
+    readNote(username:string, noteTitle:string):string {
+        if(fs.existsSync(`./database/${username}`) == true) {
+            if(fs.existsSync(`./database/${username}/${noteTitle}.json`) == true) {
+                const noteData = fs.readFileSync(`./database/${username}/${noteTitle}.json`);
+                const dataNote = JSON.parse(noteData.toString());
+                console.log(chalk.keyword(dataNote.color)(`- Title: ${dataNote.title}: ` + `Body: ${dataNote.body}`));
+                return `- Title: ${dataNote.title}: ` + `Body: ${dataNote.body}`;
+            } else {
+                console.log(chalk.red(`There is no note with the title ${noteTitle}`));
+                return `There is no note with the title [${noteTitle}]`;
+            }
+        } else {
+            console.log(chalk.red(`User [${username}] not found!`));
+            return `Error, User [${username}] not found!`
+        }
     }
 
     addNote(username:string, title:string, body:string, color:string):string {
