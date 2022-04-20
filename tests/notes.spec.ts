@@ -43,6 +43,24 @@ describe('Testing for the practice 09', () => {
     });
   });
 
+  //Remove function test
+  describe('remove function test', () => {
+    it('notes.removeNote() returns Note removed!', () => {
+      expect(notes.removeNote('User1', 'Primera nota')).
+      to.be.equal('Sucesfully to remove the [Primera nota] notes.');
+    });
+
+    it('notes.removeNote() returns Error: Title does not exist!', () => {
+      expect(notes.removeNote('User1', 'PrimeraTitle')).
+      to.be.equal('Error, there is no one note called [PrimeraTitle].');
+    });
+
+    it('notes.removeNote() returns Error: User not found!', () => {
+      expect(notes.removeNote('u2', 'Segunda nota')).
+      to.be.equal(`Error, User {u2} not found`);
+    });
+  });
+
 });
 
 fs.rmdirSync('./database', {recursive: true});

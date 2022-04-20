@@ -75,7 +75,7 @@ yargs.command({
         },
     },
     handler(argv) {
-        if (typeof(argv.user) === 'string' &&typeof argv.title === 'string') {
+        if (typeof argv.user === 'string' && typeof argv.title === 'string') {
             note.removeNote(argv.user, argv.title);
         }
     },
