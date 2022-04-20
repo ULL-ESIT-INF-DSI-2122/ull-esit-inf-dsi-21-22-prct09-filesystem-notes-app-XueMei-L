@@ -99,10 +99,21 @@ yargs.command({
             demandOption: true,
             type: 'string',
         },
+        type: {
+            describe: 'Data to modify',
+            demandOption: true,
+            type: 'string',
+        },
+        content: {
+            describe: 'Content to modify',
+            demandOption: true,
+            type: 'string',
+        },
     },
     handler(argv) {
-        if (typeof argv.user === 'string' && typeof argv.title === 'string') {
-            note.modifyNote(argv.user, argv.title);
+        if (typeof argv.user === 'string' && typeof argv.title === 'string'
+        && typeof argv.type === 'string' && typeof argv.content === 'string') {
+            note.modifyNote(argv.user, argv.title, argv.type, argv.content);
         }
     },
 });

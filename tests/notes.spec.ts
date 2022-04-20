@@ -24,7 +24,7 @@ describe('Testing for the practice 09', () => {
   describe('add function test', () => {
     it('notes.addNote() returns New note added! with title: Note01', () => {
       expect(notes.addNote('User1', 'Note01', 'Test01', colours.yellow)).
-      to.be.equal('New User User1, Sucesfully to add the new note with title: [Note01].');
+      to.be.equal('New User [User1], Sucesfully to add the new note with title: [Note01].');
     });
 
     it('notes.addNote() returns New note added! with title: Note02', () => {
@@ -44,7 +44,7 @@ describe('Testing for the practice 09', () => {
 
     it('notes.addNote() returns New user with the new note: Note01', () => {
       expect(notes.addNote('User2', 'Note01', 'Test03', colours.yellow)).
-      to.be.equal('New User User2, Sucesfully to add the new note with title: [Note01].');
+      to.be.equal('New User [User2], Sucesfully to add the new note with title: [Note01].');
     });
   });
 
@@ -62,20 +62,7 @@ describe('Testing for the practice 09', () => {
 
     it('notes.removeNote() returns Error: User not found!', () => {
       expect(notes.removeNote('u2', 'Note01')).
-      to.be.equal(`Error, User {u2} not found!`);
-    });
-  });
-
-  //List function test
-  describe('list function test', () => {
-    it('notes.listNotes() of User1 returns all notes of User1', () => {
-      expect(notes.listNotes('User1')).to.be.equal(
-         `- Note01: Test01\n- Note02: Test02\n`
-        );
-    });
-
-    it('notes.listNotes() returns Error, User {u1} not found!', () => {
-      expect(notes.listNotes('u1')).to.be.equal('Error, User {u1} not found!');
+      to.be.equal(`Error, User [u2] not found!`);
     });
   });
 
@@ -97,7 +84,54 @@ describe('Testing for the practice 09', () => {
       expect(notes.readNote('u1', 'Note01')).to.be.equal('Error, User [u1] not found!');
     });
   });
+
+  //List function test
+  describe('list function test', () => {
+    it('notes.listNotes() of User1 returns all notes of User1', () => {
+      expect(notes.listNotes('User1')).to.be.equal(
+         `- Note01: Test01\n- Note02: Test02\n`
+        );
+    });
+
+    it('notes.listNotes() returns Error, User {u1} not found!', () => {
+      expect(notes.listNotes('u1')).to.be.equal('Error, User [u1] not found!');
+    });
+  });
   
+  //Modify a note
+  describe('modifyNote function test', () => {
+    it('notes.modifyNote() change title ', () => {
+      expect(notes.modifyNote('User1', 'Note01', 'title', 'Note_01')).to.be.equal(
+          `Changed title [Note01] to [Note_01]`
+        );
+    });
+
+    it('notes.modifyNote() change body ', () => {
+      expect(notes.modifyNote('User1', 'Note01', 'body', 'This is note01')).to.be.equal(
+          `Changed body [Test01] to [This is note01]`
+        );
+    });
+
+    it('notes.modifyNote() change color ', () => {
+      expect(notes.modifyNote('User1', 'Note01', 'color', 'green')).to.be.equal(
+          `Changed color [yellow] to [green]`
+        );
+    });
+
+    it('notes.modifyNote() can not change color, title error', () => {
+      expect(notes.modifyNote('User1', 'Note', 'color', 'green')).to.be.equal(
+          `Error, there is no one note called [Note].`
+        );
+    });
+
+    it('notes.modifyNote() can not change color, user not found', () => {
+      expect(notes.modifyNote('u1', 'Note', 'color', 'green')).to.be.equal(
+          `Error, User [u1] not found!`
+        );
+    });
+
+  });
+
 });
 
 fs.rmdirSync('./database', {recursive: true});
