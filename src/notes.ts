@@ -1,15 +1,13 @@
-/* eslint-disable object-curly-spacing */
-/* eslint-disable no-multiple-empty-lines */
-/* eslint-disable no-unused-vars */
-/* eslint-disable padded-blocks */
-/* eslint-disable no-trailing-spaces */
-/* eslint-disable eol-last */
-/* eslint-disable indent */
 import * as fs from 'fs';
 
+/**
+ * Requere pack chalk
+ */
 const chalk = require('chalk');
 
-
+/**
+ * Colours definition
+ */
 export enum colours {
     red = 'red',
     green = 'green',
@@ -17,18 +15,31 @@ export enum colours {
     yellow = 'yellow'
 }
 
+/**
+ * _Class Notes_
+ */
 export class Notes {
     
     private static notes:Notes;
     
+    /**
+     * _Constructor of the class Notes_
+     */
     constructor() {}
 
+    /**
+     * _Method that to return a note_
+     */
     public static getNotes(): Notes {
         if (!fs.existsSync(`./database`)) fs.mkdirSync(`./database`, {recursive: true});
         if (!Notes.notes) Notes.notes = new Notes();
         return Notes.notes;
     }
 
+    /**
+     * _Method that to list all notes_
+     * @param username username (to find the user dir)
+     */
     listNotes(username:string):string {
         if(fs.existsSync(`./database/${username}`) == true) {
             const fileDatabase = fs.readdirSync(`./database/${username}/`);
@@ -47,6 +58,11 @@ export class Notes {
         }
     }
  
+    /**
+     * _Method that to read a note specify_
+     * @param username username (to find the user dir)
+     * @param noteTitle title of note
+     */
     readNote(username:string, noteTitle:string):string {
         if(fs.existsSync(`./database/${username}`) == true) {
             if(fs.existsSync(`./database/${username}/${noteTitle}.json`) == true) {
@@ -64,6 +80,13 @@ export class Notes {
         }
     }
 
+    /**
+     * _Method that to add a new note_
+     * @param username username (to find the user dir)
+     * @param title title of note
+     * @param body body of note
+     * @param color color of note
+     */
     addNote(username:string, title:string, body:string, color:string):string {
         const structure = `{ "title": "${title}", "body": "${body}" , "color": "${color}" }`;
         if (fs.existsSync(`./database/${username}`) == true) {
@@ -83,6 +106,11 @@ export class Notes {
         }
     }
 
+    /**
+     * _Method that to remove a note with title_
+     * @param username username (to find the user dir)
+     * @param title title of note
+     */
     removeNote(username:string, title:string): string {
         if(fs.existsSync(`./database/${username}`) == true) {
             if (fs.existsSync(`./database/${username}/${title}.json`) == true) {
@@ -99,6 +127,13 @@ export class Notes {
         }
     }
 
+    /**
+     * _Method that to modify a note specify_
+     * @param username username (to find the user dir)
+     * @param title title of note
+     * @param type type of data to change
+     * @param content content to change
+     */
     modifyNote(username:string, title:string, type:string, content:string):string {
         if(fs.existsSync(`./database/${username}`) == true) {
             if(fs.existsSync(`./database/${username}/${title}.json`) == true) {
