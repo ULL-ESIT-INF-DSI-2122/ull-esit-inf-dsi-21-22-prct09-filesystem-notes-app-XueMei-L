@@ -29,16 +29,23 @@ export class Notes {
         return Notes.notes;
     }
 
-    showAllNotes(userName:string) {
-        console.log(`show all notes`);
-        if (fs.existsSync(`./database/${userName}/hello.json`)) {
-            console.log(`there is a database`);
-            fs.writeFileSync(`./database/${userName}/hello.json`, 'hello');
-        }else {
-            console.log(`i am here`);
-            fs.mkdirSync(`./database/${userName}`, {recursive: true});
-            fs.writeFileSync(`./database/${userName}/hello.json`, 'hola');
+    listNotes(username:string):string {
+        if(fs.existsSync(`./database/${username}`) == true) {
+            const fileDatabase = fs.readdirSync(`./database/${username}`);
+            let aux:string = '';
+            fileDatabase.forEach((Note) => {
+                const noteData = fs.readFileSync(`./database/${username}/${Note}`);
+                const noteDataToJsonObj = JSON.parse(noteData.toString());
+                console.log(chalk.keyword(noteDataToJsonObj.color)
+                (noteDataToJsonObj.title + `: ` + noteDataToJsonObj.body));
+                aux += `- ${noteDataToJsonObj.title}: ${noteDataToJsonObj.body}` + '\n';
+            });
+            return aux;
+        } else {
+            console.log(`Error, User {${username}} not found!`);
+            return `Error, User {${username}} not found!`
         }
+
     }
  
     showANote(username:string, noteTitle:string) {
@@ -47,7 +54,6 @@ export class Notes {
 
     addNote(username:string, title:string, body:string, color:string):string {
         const structure = `{ "title": "${title}", "body": "${body}" , "color": "${color}" }`;
-        console.log(`{ "title": "${title}", "body": "${body}", "color": "${color}}"`);
         if (fs.existsSync(`./database/${username}`) == true) {
             if(fs.existsSync(`./database/${username}/${title}.json`) == false) {
                 fs.writeFileSync(`./database/${username}/${title}.json`, structure);
@@ -76,8 +82,8 @@ export class Notes {
                 return `Error, there is no one note called [${title}].`;
             }
         } else {
-            console.log(chalk.red(`Error, User {${userName}} not found`));
-            return `Error, User {${userName}} not found`;
+            console.log(chalk.red(`Error, User {${userName}} not found!`));
+            return `Error, User {${userName}} not found!`;
         }
     }
 

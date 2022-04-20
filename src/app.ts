@@ -51,6 +51,7 @@ yargs.command({
                   colourNote = value;
                 }
               });
+            console.log(chalk.blue(`Adding new note...`));
             note.addNote(argv.user, argv.title, argv.body, argv.color);
         }
     },
@@ -147,9 +148,9 @@ yargs.command({
     },
     handler(argv) {
         if (typeof argv.user === 'string') {
-            console.log(chalk.blue('Show Note'));
+            console.log(chalk.blue('Showing Note'));
             // console.log(chalk.green(note));
-            note.showAllNotes(argv.user);
+            note.listNotes(argv.user);
         }
     },
 });
