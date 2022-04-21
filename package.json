@@ -39,9 +39,11 @@
     "@inquirer/input": "^0.0.18-alpha.0",
     "@jest/globals": "^27.5.1",
     "console-log-img": "^4.0.2",
+    "jest": "^27.5.1",
     "lowdb": "^1.0.0",
     "prompt": "^1.2.2",
     "scanf": "^1.1.2",
+    "ts-jest": "^27.1.4",
     "typedoc": "^0.22.13",
     "yargs": "^17.4.1"
   }

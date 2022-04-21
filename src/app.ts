@@ -53,6 +53,8 @@ yargs.command({
               });
             console.log(chalk.blue(`Adding new note...`));
             note.addNote(argv.user, argv.title, argv.body, argv.color);
+        } else {
+            console.log(chalk.red(`There is a proble of the commad`));
         }
     },
 });
@@ -78,6 +80,8 @@ yargs.command({
     handler(argv) {
         if (typeof argv.user === 'string' && typeof argv.title === 'string') {
             note.removeNote(argv.user, argv.title);
+        } else {
+            console.log(chalk.red(`There is a proble of the commad`));
         }
     },
 });
@@ -114,6 +118,8 @@ yargs.command({
         if (typeof argv.user === 'string' && typeof argv.title === 'string'
         && typeof argv.type === 'string' && typeof argv.content === 'string') {
             note.modifyNote(argv.user, argv.title, argv.type, argv.content);
+        } else {
+            console.log(chalk.red(`There is a proble of the commad`));
         }
     },
 });
@@ -139,6 +145,8 @@ yargs.command({
     handler(argv) {
         if (typeof argv.user === 'string' && typeof argv.title === 'string') {
             note.readNote(argv.user, argv.title);
+        } else {
+            console.log(chalk.red(`There is a proble of the commad`));
         }
     },
 });
@@ -161,6 +169,8 @@ yargs.command({
             console.log(chalk.blue('Showing Note'));
             // console.log(chalk.green(note));
             note.listNotes(argv.user);
+        } else {
+            console.log(chalk.red(`There is a proble of the commad`));
         }
     },
 });
