@@ -1,6 +1,17 @@
 /* eslint-disable no-unused-vars */
 import * as fs from 'fs';
-import * as chalk from 'chalk';
+// import * as chalk from 'chalk';
+const chalk = require('chalk');
+
+/**
+ * colours types
+ */
+export enum colours {
+  red = 'red',
+  green = 'green',
+  blue = 'blue',
+  yellow = 'yellow'
+}
 
 /**
  * _Class Notes_
@@ -132,7 +143,6 @@ export class Notes {
         switch (type) {
           case 'title':
             const structureTitle = `{ "title": "${content}", "body": "${dataNote.body}" , "color": "${dataNote.color}" }`;
-            // console.log(`./database/${username}/${content}.json`);
             const beforeTitle:string = dataNote.title;
             fs.renameSync(`./database/${username}/${dataNote.title}.json`, `./database/${username}/${content}.json`);
             fs.writeFileSync(`./database/${username}/${content}.json`, structureTitle);
