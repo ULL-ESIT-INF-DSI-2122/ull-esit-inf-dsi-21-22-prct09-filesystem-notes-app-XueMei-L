@@ -115,8 +115,8 @@ yargs.command({
         },
     },
     handler(argv) {
-        if (typeof argv.user === 'string' && typeof argv.title === 'string'
-        && typeof argv.type === 'string' && typeof argv.content === 'string') {
+        if (typeof argv.user === 'string' && typeof argv.title === 'string' &&
+        typeof argv.type === 'string' && typeof argv.content === 'string') {
             note.modifyNote(argv.user, argv.title, argv.type, argv.content);
         } else {
             console.log(chalk.red(`There is a proble of the commad`));

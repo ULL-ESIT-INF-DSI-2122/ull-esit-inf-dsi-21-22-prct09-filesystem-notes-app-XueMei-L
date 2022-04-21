@@ -17,6 +17,9 @@ En esta practica, vamos a aprender como usar la aplicación de procesamiento de 
 
 ## 3. Desarrollo
 
+## 3.1. class Notes
+En la clase note es la implementacion de las funciones que añade, modifica, elimina las notas.
+
 Descripción general sobre los requisitos de la aplicación de procesamiento de notas de texto.
 Los requisitos que debe cumplir la aplicación de procesamiento de notas de texto son los siguientes:
  1- La aplicación de notas tiene que ser multíples usuarios
@@ -50,13 +53,21 @@ node dist/app.js list --user="User1"
 node dist/app.js read --user="User1" --title="Note01"
 ```
 
+## 3.2. El programa principal
+El programa principal usa el paquete `yargs` para la interacción con usuarios. Por ejemplo en el caso de **añadir una nota**, necesita que el usuario ejecuta el programa con 4 parametros **--user**, **--title**, **--body**, **--color**. Comprobar que los 4 parametros son de tipo `string`, y realiza la llamada de la funcion `add()`, los demas comandos son muy similares.
+
+
 ## 4. Conclusion
 Como conclusion, hemos aprendido cosas nuevas como por ejemplo yargs y chalk. Asimismo hemos forzado el conocimiento sobre typescrit, API, etc. Ha sido una practica interesante. Me gustaria aprender más sobre dicho conocimiento.
 
 ## 5. Resultados
+![testingadd](img/add.png)
+![testingremove](img/remove.png)
+![testingmodify](img/modify.png)
 
 
 ## 6. Testing
+![testing](img/Testing.png)
 
 
 ## 5. Bibliografía
