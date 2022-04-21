@@ -1,12 +1,17 @@
 /* eslint-disable no-unused-vars */
-import {Notes, colours} from './notes';
+import {Notes} from './notes';
 import yargs from "yargs";
 import * as chalk from 'chalk';
+
 /**
  * A object of class Notes
  */
 const note = Notes.getNotes();
-const noteTitle:string = 'Note title';
+
+/**
+ * const for no repite too many time in code
+ */
+const noteTitle = 'Note title';
 
 /**
  * yargs command to add a new note
@@ -154,7 +159,6 @@ yargs.command({
   handler(argv) {
     if (typeof argv.user == 'string') {
       console.log(chalk.blue('Showing Note'));
-      // console.log(chalk.green(note));
       note.listNotes(argv.user);
     } else {
       console.log(chalk.red(`There is a proble of the commad`));

@@ -1,20 +1,6 @@
 /* eslint-disable no-unused-vars */
 import * as fs from 'fs';
-
-/**
- * Requere pack chalk
- */
-const chalk = require('chalk');
-
-/**
- * Colours definition
- */
-export enum colours {
-    red = 'red',
-    green = 'green',
-    blue = 'blue',
-    yellow = 'yellow'
-}
+import * as chalk from 'chalk';
 
 /**
  * _Class Notes_
@@ -31,8 +17,12 @@ export class Notes {
      * _Method that to return a note_
      */
   public static getNotes(): Notes {
-    if (!fs.existsSync(`./database`)) fs.mkdirSync(`./database`, {recursive: true});
-    if (!Notes.notes) Notes.notes = new Notes();
+    if (!fs.existsSync(`./database`)) {
+      fs.mkdirSync(`./database`, {recursive: true});
+    };
+    if (!Notes.notes) {
+      Notes.notes = new Notes();
+    };
     return Notes.notes;
   }
 
@@ -41,7 +31,7 @@ export class Notes {
      * @param username username (to find the user dir)
      */
   listNotes(username:string):string {
-    if (fs.existsSync(`./database/${username}`) == true) {
+    if (fs.existsSync(`./database/${username}`) === true) {
       const fileDatabase = fs.readdirSync(`./database/${username}/`);
       let aux:string = '';
       fileDatabase.forEach((Note) => {
@@ -63,8 +53,8 @@ export class Notes {
      * @param noteTitle title of note
      */
   readNote(username:string, noteTitle:string):string {
-    if (fs.existsSync(`./database/${username}`) == true) {
-      if (fs.existsSync(`./database/${username}/${noteTitle}.json`) == true) {
+    if (fs.existsSync(`./database/${username}`) === true) {
+      if (fs.existsSync(`./database/${username}/${noteTitle}.json`) === true) {
         const noteData = fs.readFileSync(`./database/${username}/${noteTitle}.json`);
         const dataNote = JSON.parse(noteData.toString());
         console.log(chalk.keyword(dataNote.color)(`- Title: ${dataNote.title}: ` + `Body: ${dataNote.body}`));
@@ -88,8 +78,8 @@ export class Notes {
      */
   addNote(username:string, title:string, body:string, color:string):string {
     const structure = `{ "title": "${title}", "body": "${body}" , "color": "${color}" }`;
-    if (fs.existsSync(`./database/${username}`) == true) {
-      if (fs.existsSync(`./database/${username}/${title}.json`) == false) {
+    if (fs.existsSync(`./database/${username}`) === true) {
+      if (fs.existsSync(`./database/${username}/${title}.json`) === false) {
         fs.writeFileSync(`./database/${username}/${title}.json`, structure);
         console.log(chalk.green(`Sucesfully to add the new note with title: [${title}].`));
         return `Sucesfully to add the new note with title: [${title}].`;
@@ -111,8 +101,8 @@ export class Notes {
      * @param title title of note
      */
   removeNote(username:string, title:string): string {
-    if (fs.existsSync(`./database/${username}`) == true) {
-      if (fs.existsSync(`./database/${username}/${title}.json`) == true) {
+    if (fs.existsSync(`./database/${username}`) === true) {
+      if (fs.existsSync(`./database/${username}/${title}.json`) === true) {
         fs.unlinkSync(`./database/${username}/${title}.json`);
         console.log(chalk.green(`Sucesfully to remove the [${title}] notes.`));
         return `Sucesfully to remove the [${title}] notes.`;
@@ -134,8 +124,8 @@ export class Notes {
      * @param content content to change
      */
   modifyNote(username:string, title:string, type:string, content:string) {
-    if (fs.existsSync(`./database/${username}`) == true) {
-      if (fs.existsSync(`./database/${username}/${title}.json`) == true) {
+    if (fs.existsSync(`./database/${username}`) === true) {
+      if (fs.existsSync(`./database/${username}/${title}.json`) === true) {
         const noteData = fs.readFileSync(`./database/${username}/${title}.json`);
         const dataNote = JSON.parse(noteData.toString());
         let aux:string = '';
