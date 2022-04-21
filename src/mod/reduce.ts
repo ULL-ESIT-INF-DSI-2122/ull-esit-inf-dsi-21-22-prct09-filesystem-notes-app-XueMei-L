@@ -1,61 +1,61 @@
-/**
- * abstract class Reduce
- */
-export abstract class Reduce {
-  constructor(protected array:number[]) {
-    this.array = array;
-  }
+// /**
+//  * abstract class Reduce
+//  */
+// export abstract class Reduce {
+//   constructor(protected array:number[]) {
+//     this.array = array;
+//   }
 
-  /**
-     * get Arrya
-     * @returns array
-     */
-  getArray():number[] {
-    return this.array;
-  }
-  /**
-     * Function to run map() and filter()
-     */
-  public run() {
-    this.map((x) => {
-      return x*2;
-    });
+//   /**
+//      * get Arrya
+//      * @returns array
+//      */
+//   getArray():number[] {
+//     return this.array;
+//   }
+//   /**
+//      * Function to run map() and filter()
+//      */
+//   public run() {
+//     this.map((x) => {
+//       return x*2;
+//     });
 
-    this.filter((x) => {
-      return x > 10;
-    });
-  }
+//     this.filter((x) => {
+//       return x > 10;
+//     });
+//   }
 
-  /**
-     * map to do some operation
-     * @param funcion Function as parameter
-     * @returns return a new array
-     */
-  protected map(funcion: (arg0: number) => number):number[] {
-    const arrayNuevo: number[] = [];
-    this.array.forEach((element) => {
-      arrayNuevo.push(funcion(element));
-    });
-    return arrayNuevo;
-  }
+//   /**
+//      * map to do some operation
+//      * @param funcion Function as parameter
+//      * @returns return a new array
+//      */
+//   protected map(funcion: (arg0: number) => number):number[] {
+//     const arrayNuevo: number[] = [];
+//     this.array.forEach((element) => {
+//       arrayNuevo.push(funcion(element));
+//     });
+//     return arrayNuevo;
+//   }
 
-  /**
-     * filter to filter values of array
-     * @param funcion Function as parameter
-     * @returns return a new array
-     */
-  protected filter(funcion:(arg0:number) => boolean) {
-    const arrayNuevo: number[] = [];
-    this.array.forEach((element) => {
-      if (funcion(element)) {
-        arrayNuevo.push(element);
-      }
-    });
-    return arrayNuevo;
-  }
+//   /**
+//      * filter to filter values of array
+//      * @param funcion Function as parameter
+//      * @returns return a new array
+//      */
+//   protected filter(funcion:(arg0:number) => boolean) {
+//     const arrayNuevo: number[] = [];
+//     this.array.forEach((element) => {
+//       if (funcion(element)) {
+//         arrayNuevo.push(element);
+//       }
+//     });
+//     return arrayNuevo;
+//   }
 
-    /**
-     * function abstract reduce
-     */
-    protected abstract reduce(): number;
-};
+//     /**
+//      * function abstract reduce
+//      */
+//     protected abstract reduce(): number;
+// };
