@@ -9,6 +9,7 @@ describe('Testing for the modification', () => {
   const array:number[] = [1, 2, 3];
 
   const array1 = new FilterMapAddReduce(array);
+  const array2 = new FilterMapSubReduce(array);
 
   it('instance of FilterMapAddReduce', () => {
     expect(array1).to.not.be.null;
@@ -22,11 +23,18 @@ describe('Testing for the modification', () => {
     expect(array1.run()).to.not.be.null;
   });
 
-//   it('notes.getNotes() returns notes', () => {
-//     expect(array1.map((x) => { return x*2})).to.deep.equal([2, 4, 6]);
-//   });
+  it('instance of FilterMapSubReduce', () => {
+    expect(array2).to.not.be.null;
+  });
+
+  it('function run()', () => {
+    expect(array1.run()).to.not.be.null;
+  });
+
 
 //   it('notes.getNotes() returns notes', () => {
-//     expect(array1.filter()).to.deep.equal([]);
+//     expect(array1.filter((x) => {
+//       x > 2;
+//     })).to.deep.equal([]);
 //   });
 });

@@ -46,7 +46,7 @@ export abstract class Reduce {
      * @param funcion Function as parameter
      * @returns return a new array
      */
-  public filter(funcion:(arg0:number) => number) {
+  protected filter(funcion:(arg0:number) => number) {
     const arrayNuevo: number[] = [];
     this.array.forEach((element) => {
       arrayNuevo.push(funcion(element));

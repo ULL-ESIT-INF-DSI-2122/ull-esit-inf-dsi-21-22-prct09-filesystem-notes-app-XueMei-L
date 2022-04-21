@@ -19,12 +19,11 @@ export class FilterMapSubReduce extends Reduce {
      * reduce function
      * @returns a number result
      */
-    protected reduce():number {
+    public reduce():number {
         let sum = 1000;
         this.array.forEach((element) => {
             sum -= element;
         });
         return sum;
     }
-
 };
