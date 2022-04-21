@@ -128,6 +128,16 @@ describe('Testing for the practice 09', () => {
           `Error, User [u1] not found!`,
       );
     });
+
+    describe('fs testing', () => {
+      it('database - User1', () => {
+        expect(fs.existsSync(`./database/User1`)).to.equal(true);
+      });
+
+      it('database - file ', () => {
+        expect(fs.existsSync(`./database/User1/Note02.json`)).to.equal(true);
+      });
+    });
   });
 });
 
