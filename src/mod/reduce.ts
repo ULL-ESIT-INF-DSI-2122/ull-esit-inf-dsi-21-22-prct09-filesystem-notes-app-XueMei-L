@@ -22,9 +22,7 @@ export abstract class Reduce {
     });
 
     this.filter((x) => {
-      if (x > 10 == false) {
-      }
-      return x;
+      return x > 10;
     });
   }
 
@@ -46,10 +44,12 @@ export abstract class Reduce {
      * @param funcion Function as parameter
      * @returns return a new array
      */
-  protected filter(funcion:(arg0:number) => number) {
+  protected filter(funcion:(arg0:number) => boolean) {
     const arrayNuevo: number[] = [];
     this.array.forEach((element) => {
-      arrayNuevo.push(funcion(element));
+      if (funcion(element)) {
+        arrayNuevo.push(element);
+      }
     });
     return arrayNuevo;
   }

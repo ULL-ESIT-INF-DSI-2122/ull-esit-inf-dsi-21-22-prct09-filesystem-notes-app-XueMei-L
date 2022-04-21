@@ -30,11 +30,4 @@ describe('Testing for the modification', () => {
   it('function run()', () => {
     expect(array1.run()).to.not.be.null;
   });
-
-
-//   it('notes.getNotes() returns notes', () => {
-//     expect(array1.filter((x) => {
-//       x > 2;
-//     })).to.deep.equal([]);
-//   });
 });
