@@ -1,6 +1,4 @@
-/* eslint-disable no-unused-vars */
 import * as fs from 'fs';
-// import * as chalk from 'chalk';
 const chalk = require('chalk');
 
 /**

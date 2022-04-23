@@ -1,8 +1,7 @@
-/* eslint-disable no-unused-vars */
 import {Notes} from './notes';
 import yargs from "yargs";
-// import * as chalk from 'chalk';
 const chalk = require('chalk');
+
 /**
  * A object of class Notes
  */
